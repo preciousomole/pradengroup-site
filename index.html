@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NN9G5T10N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NN9G5T10N');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <title>Praden Group — Customer Experience Consulting, Solutions &amp; Training</title>
@@ -325,7 +333,7 @@
       <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn head-cta">Get in touch</a>
+    <a href="#contact" class="btn head-cta" data-track="header_get_in_touch">Get in touch</a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
   </div>
 </header>
@@ -339,8 +347,8 @@
         <h1>Customers who come back <span class="soft">again and again.</span></h1>
         <p class="lede">We help founders and growing businesses turn customer experience into their lowest-cost, highest-retention growth lever, not just a support function.</p>
         <div class="hero-cta">
-          <a href="#services" class="btn">Explore our services</a>
-          <a href="#contact" class="btn btn-line">Talk to us</a>
+          <a href="#services" class="btn" data-track="hero_explore_services">Explore our services</a>
+          <a href="#contact" class="btn btn-line" data-track="hero_talk_to_us">Talk to us</a>
         </div>
         <div class="proof">
           <div><strong>8+</strong><span>years in customer experience</span></div>
@@ -406,7 +414,7 @@
           </div>
           <h3 class="pillar-title">Solutions</h3>
           <p>Practical tools that make great customer experience happen every day, not just on good days.</p>
-          <div class="svc"><h4>Folotrak</h4><p>Our upcoming app that keeps your follow-ups, buyers, and sales in one place on your phone. <a href="#folotrak">See what’s coming</a></p></div>
+          <div class="svc"><h4>Folotrak</h4><p>Our upcoming app that keeps your follow-ups, buyers, and sales in one place on your phone. <a href="#folotrak" data-track="folotrak_learn_more">See what’s coming</a></p></div>
           <div class="svc"><h4>Customer care &amp; follow-up systems</h4><p>Simple setups so no customer message goes unanswered and every complaint is tracked to the end.</p></div>
         </div>
 
@@ -425,7 +433,7 @@
 
       <div class="cohort">
         <p><strong>Live online training on weekends.</strong> Small groups of up to 40, built around role-play and real script practice, so people leave able to do the work, not just talk about it.</p>
-        <a href="#contact" class="btn">Ask about the next cohort</a>
+        <a href="https://wa.me/2349018941968?text=Hi%20Praden%20Group%2C%20I%27d%20like%20to%20know%20about%20the%20next%20training%20cohort." class="btn" data-track="cohort_interest">Ask about the next cohort</a>
       </div>
     </div>
   </section>
@@ -444,7 +452,7 @@
           <li><strong>Spot your best-sellers</strong><span>See which products your customers keep coming back for.</span></li>
           <li><strong>My Day</strong><span>Open the app to a clear list of what needs your attention today.</span></li>
         </ul>
-        <a href="https://wa.me/2349018941968?text=Hi%20Praden%20Group%2C%20I%27d%20like%20early%20access%20to%20Folotrak." class="btn btn-light">Get early access on WhatsApp</a>
+        <a href="https://wa.me/2349018941968?text=Hi%20Praden%20Group%2C%20I%27d%20like%20early%20access%20to%20Folotrak." class="btn btn-light" data-track="folotrak_early_access">Get early access on WhatsApp</a>
         <p class="folo-note">Early access is opening to a small group of business owners first.</p>
       </div>
 
@@ -479,7 +487,7 @@
         <p class="ebook-author">By Precious Omole</p>
         <div class="ebook-buy">
           <span class="price">₦5,000</span>
-          <a href="https://flutterwave.com/pay/6secretsthatmakespeoplebuyagainandagain" class="btn">Buy the ebook</a>
+          <a href="https://flutterwave.com/pay/6secretsthatmakespeoplebuyagainandagain" class="btn" data-track="ebook_buy_click">Buy the ebook</a>
         </div>
       </div>
     </div>
@@ -516,10 +524,10 @@
       <h2>Let’s make your customers come back.</h2>
       <p class="lede">Whether it’s corporate training, a startup advisory session, Folotrak, or getting your team job-ready, reach out directly.</p>
       <div class="contact-grid">
-        <a href="mailto:info@pradengroup.co" class="c-card"><small>General enquiries</small><b>info@pradengroup.co</b></a>
-        <a href="mailto:support.team@pradengroup.co" class="c-card"><small>Support</small><b>support.team@pradengroup.co</b></a>
-        <a href="https://wa.me/2349018941968" class="c-card"><small>WhatsApp</small><b>Chat with us</b></a>
-        <a href="tel:+2349018941968" class="c-card"><small>Phone</small><b>+234 901 894 1968</b></a>
+        <a href="mailto:info@pradengroup.co" class="c-card" data-track="contact_click" data-method="email_info"><small>General enquiries</small><b>info@pradengroup.co</b></a>
+        <a href="mailto:support.team@pradengroup.co" class="c-card" data-track="contact_click" data-method="email_support"><small>Support</small><b>support.team@pradengroup.co</b></a>
+        <a href="https://wa.me/2349018941968" class="c-card" data-track="contact_click" data-method="whatsapp"><small>WhatsApp</small><b>Chat with us</b></a>
+        <a href="tel:+2349018941968" class="c-card" data-track="contact_click" data-method="phone"><small>Phone</small><b>+234 901 894 1968</b></a>
       </div>
     </div>
   </section>
@@ -549,6 +557,14 @@
       a.addEventListener('click', function(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.textContent='Menu'; });
     });
     document.getElementById('yr').textContent = new Date().getFullYear();
+    // Click tracking: any link or button with data-track sends a GA4 event
+    document.addEventListener('click', function(e){
+      var el = e.target.closest('[data-track]');
+      if(!el || typeof gtag !== 'function') return;
+      var params = {link_text: (el.textContent || '').trim().slice(0, 80), link_url: el.getAttribute('href') || ''};
+      if(el.dataset.method) params.method = el.dataset.method;
+      gtag('event', el.dataset.track, params);
+    });
   })();
 </script>
 
@@ -605,6 +621,13 @@
   var EBOOK_DOWNLOAD_URL = 'https://workdrive.zohoexternal.com/external/dd9bf8ec064ac32f7b2b31dded9c00124d453a66000b0616088de6cd6492d85b/download';
 
   if(ticketType === 'ebook' && (status === 'successful' || status === 'completed')){
+    if(typeof gtag === 'function'){
+      gtag('event', 'purchase', {
+        transaction_id: txRef || transactionId || undefined,
+        value: 5000, currency: 'NGN',
+        items: [{item_id: 'ebook-6-secrets', item_name: '6 Secrets That Make People Buy Again & Again', price: 5000, quantity: 1}]
+      });
+    }
     html += '<div class="ticket-top">';
     html += '  <span class="status-badge success"><span class="dot"></span>Payment confirmed</span>';
     html += '  <p class="eyebrow">Praden Group</p>';
