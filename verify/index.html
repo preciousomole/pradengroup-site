@@ -496,64 +496,91 @@ const PG = {
   },
   verifyLink(code){ return this.VERIFY_URL + '?code=' + encodeURIComponent(code); },
 
-  /* Draws the certificate onto a jsPDF page (landscape A4). */
-  drawCertificate(doc, c, logo){
-    const W = 297, H = 210;
-    doc.setFillColor(237, 234, 229); doc.rect(0, 0, W, H, 'F');
-    doc.setFillColor(255, 255, 255); doc.rect(14, 14, W - 28, H - 28, 'F');
-    doc.setFillColor(26, 140, 110); doc.rect(14, 14, W - 28, 5, 'F');
-    doc.setDrawColor(200, 200, 195); doc.setLineWidth(0.5); doc.rect(14, 14, W - 28, H - 28);
-    doc.setDrawColor(45, 184, 122); doc.setLineWidth(0.3); doc.rect(18, 22, W - 36, H - 36);
+  /* Draws the certificate onto a jsPDF page (landscape A4).
+     A = fonts, signature and QR mark (window.PG_ASSETS); logo = Praden Group logo as a data URL. */
+  drawCertificate(doc, c, logo, A){
+    const W = 297, H = 210, cx = W / 2;
+    const C = { dark:[16,52,56], teal:[31,110,86], green:[45,184,122], deep:[26,140,110], cream:[230,226,218], ink:[21,26,28], grey:[118,118,112], soft:[207,232,220], page:[252,251,248] };
+    const fill = k => doc.setFillColor(...C[k]), stroke = k => doc.setDrawColor(...C[k]), ink = k => doc.setTextColor(...C[k]);
+    const poly = (pts, k) => { fill(k); doc.lines(pts.slice(1).map((p, i) => [p[0] - pts[i][0], p[1] - pts[i][1]]), pts[0][0], pts[0][1], [1, 1], 'F', true); };
+    let serif = 'times', italic = 'times', italicStyle = 'italic';
+    if (A && A.alice) {
+      doc.addFileToVFS('Alice.ttf', A.alice); doc.addFont('Alice.ttf', 'Alice', 'normal');
+      doc.addFileToVFS('LoraItalic.ttf', A.lora); doc.addFont('LoraItalic.ttf', 'LoraItalic', 'normal');
+      serif = 'Alice'; italic = 'LoraItalic'; italicStyle = 'normal';
+    }
+    const font = (f, size) => { doc.setFont(f === 'serif' ? serif : italic, f === 'serif' ? 'normal' : italicStyle); doc.setFontSize(size); };
+    const fit = (text, size, maxW, f) => { font(f, size); while (doc.getTextWidth(text) > maxW && size > 10) { size -= 0.5; font(f, size); } return size; };
 
-    if (logo) { try { doc.addImage(logo, 'PNG', W/2 - 25, 28, 50, 21.6, 'pglogo', 'FAST'); } catch (e) {} }
+    /* page and frame */
+    fill('page'); doc.rect(0, 0, W, H, 'F');
+    stroke('soft'); doc.setLineWidth(0.35); doc.roundedRect(9, 9, W - 18, H - 18, 3, 3, 'S');
+    doc.setLineWidth(0.15); doc.roundedRect(11.5, 11.5, W - 23, H - 23, 2, 2, 'S');
 
-    doc.setDrawColor(45, 184, 122); doc.setLineWidth(0.4); doc.line(W/2 - 30, 54, W/2 + 30, 54);
-
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.setTextColor(26, 110, 86);
-    this.spaced(doc, 'CERTIFICATE OF COMPLETION', W/2, 63, 2.5);
-
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(100, 100, 95);
-    doc.text('This is to certify that', W/2, 76, { align: 'center' });
-
-    doc.setFont('times', 'italic'); doc.setTextColor(28, 28, 28);
-    let size = 32; doc.setFontSize(size);
-    while (doc.getTextWidth(c.name) > 200 && size > 20) { size -= 1; doc.setFontSize(size); }
-    doc.text(c.name, W/2, 97, { align: 'center' });
-    const nw = doc.getTextWidth(c.name);
-    doc.setDrawColor(45, 184, 122); doc.setLineWidth(0.5); doc.line(W/2 - nw/2, 101, W/2 + nw/2, 101);
-
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(100, 100, 95);
-    doc.text('has successfully completed the training programme', W/2, 114, { align: 'center' });
-
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(17); doc.setTextColor(26, 140, 110);
-    doc.text(c.course, W/2, 127, { align: 'center' });
-
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(120, 120, 115);
-    doc.text(c.date, W/2, 138, { align: 'center' });
-
-    doc.setDrawColor(45, 184, 122); doc.setLineWidth(0.4); doc.line(55, 153, W - 70, 153);
-
-    doc.setFontSize(8); doc.setTextColor(140, 140, 135);
-    this.spaced(doc, 'CERTIFICATE ID: ' + c.id, (55 + W - 70) / 2, 162, 1.2);
-    doc.setFontSize(8.5); doc.setTextColor(90, 90, 85);
-    doc.text('Verify this certificate at pradengroup.co/verify', (55 + W - 70) / 2, 168.5, { align: 'center' });
-    doc.setFontSize(8); doc.setTextColor(26, 140, 110);
-    this.spaced(doc, 'DRIVING VALUE... BUILDING TRUST...', (55 + W - 70) / 2, 176, 1);
-
-    /* QR code that opens the verify page with this certificate's code filled in */
-    if (window.qrcode) {
-      const qr = qrcode(0, 'M'); qr.addData(this.verifyLink(c.id)); qr.make();
-      const n = qr.getModuleCount(), box = 24, cell = box / n, x0 = W - 58, y0 = 146;
-      doc.setFillColor(28, 28, 28);
-      for (let r = 0; r < n; r++) for (let col = 0; col < n; col++)
-        if (qr.isDark(r, col)) doc.rect(x0 + col * cell, y0 + r * cell, cell + 0.02, cell + 0.02, 'F');
-      doc.setFontSize(6.5); doc.setTextColor(120, 120, 115);
-      doc.text('Scan to verify', x0 + box / 2, y0 + box + 4, { align: 'center' });
+    /* faint logo mark behind the text */
+    if (A && A.mark) {
+      try { doc.setGState(new doc.GState({ opacity: 0.045 })); const mh = 120, mw = mh * A.markW / A.markH;
+        doc.addImage('data:image/png;base64,' + A.mark, 'PNG', cx - mw / 2, 46, mw, mh, 'pgmark', 'FAST');
+        doc.setGState(new doc.GState({ opacity: 1 })); } catch (e) {}
     }
 
-    doc.setFillColor(45, 184, 122);
-    doc.rect(21, 25, 3, 3, 'F'); doc.rect(W - 24, 25, 3, 3, 'F');
-    doc.rect(21, H - 28, 3, 3, 'F'); doc.rect(W - 24, H - 28, 3, 3, 'F');
+    /* top bar and corner bands */
+    fill('dark'); doc.rect(70, 0, 70, 7, 'F'); fill('teal'); doc.rect(140, 0, 80, 7, 'F'); fill('green'); doc.rect(220, 0, W - 220, 7, 'F');
+    poly([[0, 0], [74, 0], [0, 128]], 'dark');
+    poly([[0, 0], [64, 0], [0, 111]], 'cream');
+    poly([[0, 0], [56, 0], [0, 97]], 'green');
+    poly([[0, 0], [30, 0], [0, 52]], 'deep');
+    poly([[W, H], [W - 40, H], [W, H - 70]], 'dark');
+    poly([[W, H], [W - 33, H], [W, H - 58]], 'cream');
+    poly([[W, H], [W - 27, H], [W, H - 47]], 'green');
+
+    /* logo */
+    if (logo) { try { doc.addImage(logo, 'PNG', cx - 22, 14, 44, 19, 'pglogo', 'FAST'); } catch (e) {} }
+
+    /* QR code, top right */
+    if (window.qrcode) {
+      const fx = 242, fy = 15, fs = 31;
+      doc.setFillColor(255, 255, 255); stroke('green'); doc.setLineWidth(0.8); doc.roundedRect(fx, fy, fs, fs, 2.5, 2.5, 'FD');
+      const qr = qrcode(0, 'H'); qr.addData(this.verifyLink(c.id)); qr.make();
+      const n = qr.getModuleCount(), box = 25, cell = box / n, x0 = fx + 3, y0 = fy + 3;
+      fill('ink');
+      for (let r = 0; r < n; r++) for (let col = 0; col < n; col++)
+        if (qr.isDark(r, col)) doc.rect(x0 + col * cell, y0 + r * cell, cell + 0.03, cell + 0.03, 'F');
+      if (A && A.mark) { doc.setFillColor(255, 255, 255); doc.roundedRect(x0 + box / 2 - 3.6, y0 + box / 2 - 3.6, 7.2, 7.2, 1, 1, 'F');
+        const mh = 5.6, mw = mh * A.markW / A.markH; try { doc.addImage('data:image/png;base64,' + A.mark, 'PNG', x0 + box / 2 - mw / 2, y0 + box / 2 - mh / 2, mw, mh, 'pgmark', 'FAST'); } catch (e) {} }
+      fill('green'); doc.roundedRect(fx, fy + fs + 2.5, fs, 6.5, 3.2, 3.2, 'F');
+      font('serif', 8.5); doc.setTextColor(255, 255, 255); doc.text('Verify here!', fx + fs / 2, fy + fs + 7, { align: 'center' });
+    }
+
+    /* main text */
+    font('serif', 30); ink('teal'); this.spaced(doc, 'CERTIFICATE OF COMPLETION', cx, 57, 0.8);
+    font('italic', 13); ink('grey'); doc.text('This is to certify that', cx, 69, { align: 'center' });
+
+    fit(c.name, 42, 190, 'italic'); ink('ink'); doc.text(c.name, cx, 91, { align: 'center' });
+    const half = Math.max(62, doc.getTextWidth(c.name) / 2 + 12);
+    stroke('ink'); doc.setLineWidth(0.4); doc.line(cx - half, 97, cx + half, 97);
+    fill('ink'); [cx - half, cx + half].forEach(x => doc.lines([[1.4, -1.1], [1.4, 1.1], [-1.4, 1.1]], x - 1.4, 97, [1, 1], 'F', true));
+    fill('green'); doc.circle(cx, 97, 0.9, 'F');
+
+    font('italic', 13); ink('grey'); doc.text('has successfully completed the training programme', cx, 110, { align: 'center' });
+    const course = String(c.course).toUpperCase();
+    fit(course, 25, 230, 'serif'); ink('teal'); this.spaced(doc, course, cx, 124, 0.4);
+    font('italic', 12); ink('grey'); doc.text('organised by Praden Group', cx, 134, { align: 'center' });
+
+    /* bottom row: date, signature, certificate ID */
+    const box = (bx, label, value) => {
+      font('serif', 10.5); ink('deep'); this.spaced(doc, label, bx, 170, 0.5);
+      doc.setFillColor(255, 255, 255); stroke('green'); doc.setLineWidth(0.7); doc.roundedRect(bx - 29, 174, 58, 11.5, 2, 2, 'FD');
+      fit(value, 13, 52, 'serif'); ink('ink'); doc.text(value, bx, 182, { align: 'center' });
+    };
+    box(70, 'DATE OF COMPLETION', c.date);
+    box(226, 'CERTIFICATE ID', c.id);
+    font('italic', 9); ink('grey'); doc.text('Verify at: pradengroup.co/verify', 226, 192, { align: 'center' });
+
+    if (A && A.sig) { const sw = 44, sh = sw * A.sigH / A.sigW; try { doc.addImage('data:image/png;base64,' + A.sig, 'PNG', cx - sw / 2, 175.5 - sh, sw, sh, 'pgsig', 'FAST'); } catch (e) {} }
+    stroke('green'); doc.setLineWidth(1); doc.line(cx - 34, 176.5, cx + 34, 176.5);
+    font('serif', 13); ink('ink'); doc.text('Precious Omole', cx, 183.5, { align: 'center' });
+    font('serif', 8.5); ink('grey'); this.spaced(doc, 'LEAD FACILITATOR, PRADEN GROUP', cx, 189.5, 0.35);
   }
 };
 
@@ -605,11 +632,20 @@ async function verifyCertificate(){
   dlBtn.style.display = 'inline-flex';
 }
 
-function downloadCertificate(){
+function loadAssets(){
+  if (window.PG_ASSETS) return Promise.resolve();
+  return new Promise((ok, fail) => { const s = document.createElement('script'); s.src = 'cert-assets.js'; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+}
+
+async function downloadCertificate(){
   if (!currentCert || !window.jspdf) return;
+  const btn = document.getElementById('downloadBtn');
+  btn.disabled = true;
+  try { await loadAssets(); } catch (e) {}
   const doc = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-  PG.drawCertificate(doc, currentCert, LOGO);
+  PG.drawCertificate(doc, currentCert, LOGO, window.PG_ASSETS);
   doc.save('Praden-Group-' + currentCert.id + '.pdf');
+  btn.disabled = false;
 }
 
 document.getElementById('verifyBtn').addEventListener('click', verifyCertificate);
