@@ -604,6 +604,47 @@
 
 <main>
 
+<!-- Folotrak Founding Supporters banner -->
+<div id="fl-banner" style="display:none">
+  <style>
+    #fl-banner { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; margin: 16px auto; max-width: 980px; padding: 0 16px; }
+    #fl-banner .fl-inner { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+      background: #FFF3DC; border: 1.5px solid #F7A21B; border-radius: 14px; padding: 14px 18px; color: #1F2430; }
+    #fl-banner .fl-text { font-size: 15px; line-height: 1.45; }
+    #fl-banner .fl-text b { font-weight: 700; }
+    #fl-banner .fl-pill { font-size: 13px; font-weight: 600; background: #FFFFFF; border-radius: 999px; padding: 6px 12px; white-space: nowrap; }
+    #fl-banner a.fl-btn { background: #F7A21B; color: #1F2430; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 10px; padding: 9px 16px; white-space: nowrap; }
+    #fl-banner a.fl-btn:focus-visible { outline: 3px solid #1F2430; outline-offset: 2px; }
+  </style>
+  <div class="fl-inner">
+    <div class="fl-text" id="fl-text"></div>
+    <div id="fl-action"></div>
+  </div>
+  <script>
+    (function () {
+      var OPENS = new Date('2026-12-21T00:00:00+01:00').getTime();
+      var PAGE = 'supporters.html';   // the address of your Founding Supporters page
+      var box = document.getElementById('fl-banner');
+      var text = document.getElementById('fl-text');
+      var action = document.getElementById('fl-action');
+      function render() {
+        var ms = OPENS - Date.now();
+        if (ms > 0) {
+          var days = Math.ceil(ms / 864e5);
+          text.innerHTML = '<b>Folotrak Founding Supporters</b> opens on 21 December. Be one of the first names on our Founders’ Wall.';
+          action.innerHTML = '<span class="fl-pill">' + days + (days === 1 ? ' day' : ' days') + ' to go</span>';
+        } else {
+          text.innerHTML = '<b>Folotrak Founding Supporters is now open.</b> Help launch a customer care office in every small business owner’s phone.';
+          action.innerHTML = '<a class="fl-btn" href="' + PAGE + '">Become a Founding Supporter</a>';
+        }
+        box.style.display = 'block';
+      }
+      render();
+      setInterval(render, 60000);
+    })();
+  </script>
+</div>
+
   <section class="hero" id="home">
     <div class="wrap hero-grid">
       <div>

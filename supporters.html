@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Become a Founding Supporter of Folotrak</title>
+<meta name="description" content="Help launch Folotrak, a sales and customer care office in a small business owner's phone. Become a Founding Supporter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Edit these colours if your brand changes ---------- */
+  :root {
+    --orange: #F7A21B;
+    --orange-deep: #C97A06;
+    --ink: #1F2430;
+    --muted: #5E6371;
+    --line: #E6E2DA;
+    --page: #FFFFFF;
+    --paper: #FFFCF5;
+    --soft: #FFF3DC;
+    --green: #1FA855;
+    --display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --body: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #F1F0EC; --muted: #A9ACB5; --line: #2E323B; --page: #15171C; --paper: #1D2027; --soft: #3A2E17;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2.4rem, 5.6vw, 4rem); font-weight: 800; }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; margin-bottom: 18px; }
+  h3 { font-size: 1.25rem; font-weight: 700; }
+  p { margin: 0 0 14px; max-width: 62ch; }
+  .muted { color: var(--muted); }
+
+  /* ---------- Top bar ---------- */
+  .top { padding: 20px 0; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .wordmark { font-family: var(--display); font-weight: 800; font-size: 1.5rem; text-decoration: none; letter-spacing: -0.02em; }
+  .wordmark span { color: var(--orange); }
+  .by { font-size: 0.85rem; color: var(--muted); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 36px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .hero p.lead { font-size: 1.2rem; margin-top: 22px; color: var(--muted); }
+  .btn { display: inline-block; background: var(--orange); color: #1F2430; font-weight: 600; text-decoration: none; padding: 15px 26px; border-radius: 12px; font-size: 1.05rem; border: 0; cursor: pointer; }
+  .btn:hover { background: #FFB43A; }
+  .btn.quiet { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn.quiet:hover { border-color: var(--orange); }
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+
+  /* The receipt: the one bold element on the page */
+  .receipt { background: var(--paper); font-family: var(--mono); font-size: 0.92rem; padding: 30px 28px 22px; position: relative;
+    box-shadow: 0 18px 40px -18px rgba(31,36,48,.35); transform: rotate(1.2deg); }
+  .receipt::after { content: ''; position: absolute; left: 0; right: 0; bottom: -14px; height: 14px;
+    background: linear-gradient(-45deg, transparent 10px, var(--paper) 0) 0 0 / 20px 14px repeat-x,
+                linear-gradient(45deg, transparent 10px, var(--paper) 0) 0 0 / 20px 14px repeat-x; }
+  .receipt .rhead { text-align: center; border-bottom: 1.5px dashed var(--line); padding-bottom: 14px; margin-bottom: 14px; }
+  .receipt .rhead strong { font-family: var(--display); font-size: 1.35rem; display: block; letter-spacing: -0.01em; }
+  .receipt .row { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; }
+  .receipt .total { border-top: 1.5px dashed var(--line); margin-top: 12px; padding-top: 12px; font-weight: 500; font-size: 1.05rem; }
+  .bar { height: 12px; background: var(--line); border-radius: 6px; overflow: hidden; margin: 14px 0 8px; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--orange); border-radius: 6px; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .stamp { position: absolute; right: 18px; top: 58px; border: 2.5px solid var(--green); color: var(--green); font-family: var(--display); font-weight: 800;
+    padding: 4px 10px; border-radius: 6px; transform: rotate(-12deg); font-size: 0.95rem; opacity: 0; }
+  .stamp.on { opacity: .9; }
+  .receipt .thanks { text-align: center; margin-top: 14px; color: var(--muted); font-size: 0.82rem; }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 72px 0; border-top: 1px solid var(--line); }
+  .two { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; }
+  .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; margin-top: 8px; }
+  .roles div { border-left: 3px solid var(--orange); padding-left: 14px; }
+  .roles h3 { font-size: 1.05rem; font-family: var(--body); font-weight: 600; }
+  .roles p { font-size: 0.97rem; color: var(--muted); margin: 4px 0 0; }
+
+  table.budget { width: 100%; border-collapse: collapse; font-size: 1rem; }
+  table.budget td { padding: 13px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.budget td:last-child { text-align: right; font-family: var(--mono); font-size: 0.95rem; white-space: nowrap; padding-left: 16px; }
+  table.budget tr:last-child td { border-bottom: 0; font-weight: 600; }
+
+  .levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 10px; }
+  .level { border: 1.5px solid var(--line); border-radius: 18px; padding: 26px 24px; display: flex; flex-direction: column; }
+  .level.featured { border-color: var(--orange); background: var(--soft); }
+  .level .amt { font-family: var(--display); font-size: 2.4rem; font-weight: 800; margin: 8px 0 4px; letter-spacing: -0.02em; }
+  .level ul { padding-left: 18px; margin: 10px 0 22px; color: var(--muted); font-size: 0.97rem; }
+  .level li { margin-bottom: 6px; }
+  .level .btn { margin-top: auto; text-align: center; }
+  .note { font-size: 0.92rem; color: var(--muted); margin-top: 18px; }
+
+  .ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 16px; }
+  .way { border-top: 3px solid var(--orange); padding-top: 16px; }
+  .way h4 { margin: 0 0 6px; font-family: var(--body); font-size: 1.05rem; font-weight: 600; }
+  .way p { font-size: 0.97rem; color: var(--muted); margin: 0 0 12px; }
+  .way .handle { font-family: var(--mono); font-size: 0.95rem; background: var(--soft); padding: 8px 12px; border-radius: 8px; display: inline-block; margin-bottom: 10px; word-break: break-all; }
+  .way button.copy { background: transparent; border: 1.5px solid var(--line); color: var(--ink); border-radius: 10px; padding: 8px 14px; font: inherit; font-size: 0.92rem; cursor: pointer; margin-left: 6px; }
+  .way .btn { padding: 11px 18px; font-size: 0.97rem; }
+  @media (max-width: 860px) { .ways { grid-template-columns: 1fr; } }
+  .founders { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; margin-top: 22px; }
+  .fcard { border-radius: 18px; padding: 26px 24px 22px; background: var(--paper); border: 1.5px solid var(--line); display: flex; flex-direction: column; min-height: 190px; }
+  .fcard .num { font-size: 0.88rem; color: var(--muted); font-weight: 500; }
+  .fcard .fname { font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1.1; margin: 10px 0 8px; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+  .fcard .fnote { font-size: 0.97rem; color: var(--muted); font-style: italic; margin: 0; }
+  .fcard .fplace { margin-top: auto; padding-top: 14px; font-size: 0.88rem; color: var(--muted); }
+  .fcard.champ { background: var(--orange); border-color: var(--orange); grid-column: span 2; }
+  .fcard.champ .num, .fcard.champ .fnote, .fcard.champ .fplace { color: #4A3410; }
+  .fcard.champ .fname { color: #1F2430; font-size: 2.3rem; }
+  .fcard.seat { background: transparent; border: 2px dashed var(--line); justify-content: center; align-items: flex-start; }
+  .fcard.seat .fname { font-size: 1.25rem; color: var(--muted); font-weight: 700; }
+  .fcard.seat a { color: var(--orange-deep); font-weight: 600; text-decoration: none; margin-top: 6px; }
+  @media (max-width: 560px) { .fcard.champ { grid-column: span 1; } }
+
+  .promise li { margin-bottom: 10px; max-width: 62ch; }
+  details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  details summary { cursor: pointer; font-weight: 600; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: '+'; font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--orange-deep); }
+  details[open] summary::after { content: '\2212'; }
+  details p { margin: 12px 0 0; color: var(--muted); }
+
+  .founder { background: #1F2430; color: #F1F0EC; border-radius: 22px; padding: 44px; }
+  .founder p { color: #D5D6DB; font-size: 1.08rem; }
+  .founder .sign { color: var(--orange); font-family: var(--display); font-weight: 700; font-size: 1.15rem; margin-top: 18px; }
+
+  .teaser { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .tcard { width: 100%; max-width: 560px; border: 1.5px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--page); box-shadow: 0 18px 40px -24px rgba(31,36,48,.35); }
+  .tglimpse { background: var(--paper); padding: 26px 28px; filter: blur(5px); user-select: none; pointer-events: none; border-bottom: 1.5px dashed var(--line); }
+  .tglimpse .gl1 { font-family: var(--display); font-weight: 800; font-size: 1.6rem; }
+  .tglimpse .gl2 { font-family: var(--mono); margin: 8px 0 14px; }
+  .tglimpse .gl3 { height: 12px; border-radius: 6px; background: var(--line); overflow: hidden; } .tglimpse .gl3 i { display: block; width: 38%; height: 100%; background: var(--orange); }
+  .tbody { padding: 26px 28px 30px; }
+  .tbody .wordmark { font-size: 1.25rem; }
+  .th { font-size: clamp(1.7rem, 4.6vw, 2.3rem); margin: 14px 0 12px; }
+  .tp { color: var(--muted); }
+  .count { display: flex; gap: 10px; margin: 20px 0 22px; flex-wrap: wrap; }
+  .count div { background: var(--soft); border-radius: 12px; padding: 10px 14px; min-width: 76px; text-align: center; }
+  .count b { display: block; font-family: var(--display); font-size: 1.7rem; line-height: 1.1; }
+  .count span { font-size: 0.82rem; color: var(--muted); }
+  footer { padding: 40px 0 56px; color: var(--muted); font-size: 0.92rem; border-top: 1px solid var(--line); }
+
+  @media (max-width: 860px) {
+    .hero .wrap, .two { grid-template-columns: 1fr; gap: 40px; }
+    .levels { grid-template-columns: 1fr; }
+    .receipt { transform: none; max-width: 440px; }
+    .founder { padding: 30px 24px; }
+  }
+  @media (max-width: 520px) { .roles { grid-template-columns: 1fr; } body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<div id="teaser" class="teaser" hidden>
+  <div class="tcard">
+    <div class="tglimpse" aria-hidden="true">
+      <div class="gl1">Founding Supporters</div>
+      <div class="gl2">Friend $25 · Supporter $100 · Champion $250+</div>
+      <div class="gl3"><i></i></div>
+    </div>
+    <div class="tbody">
+      <a class="wordmark" href="/" aria-label="Back to the home page">Folo<span>trak</span></a>
+      <h1 class="th">Founding Supporters opens 21 December</h1>
+      <p class="tp">A small circle of people will help launch Folotrak, a sales and customer care office in a small business owner’s phone. Their names will live on our Founders’ Wall.</p>
+      <div class="count" id="count" aria-live="polite"></div>
+      <a class="btn" id="notify" target="_blank" rel="noopener" href="#">Tell me when it opens</a>
+    </div>
+  </div>
+</div>
+<div id="full">
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="Folotrak home">Folo<span>trak</span></a>
+    <span class="by">by Praden Hub</span>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ---------- Hero ---------- -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Help small businesses keep the customers they’ve already won.</h1>
+        <p class="lead">Folotrak is a sales and customer care office in a business owner’s phone. We’re raising <strong id="goalText">$2,500</strong> from a small circle of Founding Supporters to launch it for African small businesses.</p>
+        <div class="ctas">
+          <a class="btn" href="#support">Become a Founding Supporter</a>
+          <a class="btn quiet" href="#what">See what it does</a>
+        </div>
+      </div>
+
+      <div class="receipt" aria-label="Fundraising progress">
+        <div class="rhead">
+          <strong>Founding Supporters</strong>
+          Receipt no. FS-2026 · Lagos
+        </div>
+        <div class="stamp" id="stamp">FUNDED</div>
+        <div class="row"><span>Goal</span><span id="rGoal">$2,500</span></div>
+        <div class="row"><span>Supporters so far</span><span id="rCount">0</span></div>
+        <div class="row"><span>Closes</span><span id="rDeadline">31 Jan 2027</span></div>
+        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="barWrap"><i id="bar"></i></div>
+        <div class="row total"><span>Raised</span><span id="rRaised">$0</span></div>
+        <div class="thanks" id="rLeft">Thank you for helping us get started</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- The problem and Folotrak ---------- -->
+  <section class="block" id="what">
+    <div class="wrap two">
+      <div>
+        <h2>Customers don’t leave because the product was bad.</h2>
+        <p>They leave because nobody checked on them. Small business owners work hard to win a customer, then lose them quietly: no thank-you, no follow-up, a receipt scribbled on paper, a complaint lost in a busy WhatsApp chat.</p>
+        <p>Folotrak gives every owner the office they could never afford, inside the phone they already use.</p>
+      </div>
+      <div class="roles">
+        <div><h3>Plans the day</h3><p>The moment the app opens, the owner sees exactly what needs doing today.</p></div>
+        <div><h3>Records every sale</h3><p>In under 30 seconds, linked to the customer and the products sold.</p></div>
+        <div><h3>Sends proper receipts</h3><p>With the business’s own logo, shared on WhatsApp in one tap.</p></div>
+        <div><h3>Remembers to follow up</h3><p>Tells the owner who to check on, with the message already written.</p></div>
+        <div><h3>Handles complaints</h3><p>Every complaint gets a ticket and a caring reply until it’s solved.</p></div>
+        <div><h3>Watches the stock</h3><p>Warns the owner before a best-seller runs out.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Where the money goes ---------- -->
+  <section class="block">
+    <div class="wrap two">
+      <div>
+        <h2>Where every dollar goes</h2>
+        <p>A working pilot is already being tested by business owners in Nigeria. Your support turns it into a proper Android and iPhone app and puts it in the hands of our first 100 businesses.</p>
+        <p class="muted">We’ll share a short update every month showing exactly how the money was used.</p>
+      </div>
+      <table class="budget">
+        <!-- Edit the amounts below if your costs change. Naira costs converted at about N1,350 to $1. -->
+        <tr><td>Building the app for Android and iPhone, plus improvements from our pilot testers’ feedback</td><td>$700</td></tr>
+        <tr><td>App Store and Google Play accounts, our domain, and hosting for the first year</td><td>$190</td></tr>
+        <tr><td>Business registration, trademark protection and contract review</td><td>$250</td></tr>
+        <tr><td>Brand, demo video and launch materials</td><td>$300</td></tr>
+        <tr><td>Launching to our first 100 businesses: training sessions, onboarding support and short ads</td><td>$810</td></tr>
+        <tr><td>Reserve for the unexpected (10%)</td><td>$250</td></tr>
+        <tr><td>Total goal</td><td>$2,500</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ---------- Supporter levels ---------- -->
+  <section class="block" id="support">
+    <div class="wrap">
+      <h2>Choose how you’d like to support</h2>
+      <p class="muted">Pay by card from anywhere, or use Zelle, PayPal or bank transfer if you’re in the US.</p>
+      <div class="levels">
+        <div class="level">
+          <h3>Friend of Folotrak</h3>
+          <div class="amt">$25</div>
+          <ul><li>A personal thank-you message</li><li>Monthly progress updates</li></ul>
+          <a class="btn quiet pay" data-level="friend" href="#">Give $25</a>
+        </div>
+        <div class="level featured">
+          <h3>Founding Supporter</h3>
+          <div class="amt">$100</div>
+          <ul><li>Your name on our Founding Supporters wall and in the app</li><li>Monthly progress updates</li><li>Early access to the app</li></ul>
+          <a class="btn pay" data-level="supporter" href="#">Give $100</a>
+        </div>
+        <div class="level">
+          <h3>Founding Champion</h3>
+          <div class="amt">$250+</div>
+          <ul><li>Your name highlighted at the top of the wall and in the app</li><li>A personal thank-you video from the founder</li><li>Monthly progress updates and early access</li></ul>
+          <a class="btn quiet pay" data-level="champion" href="#">Give $250 or more</a>
+        </div>
+      </div>
+      <p class="note">Founding support is a gift to help us launch, not an investment. Supporters don’t receive shares or repayment.</p>
+
+      <h3 id="ways" style="margin-top:44px;">Ways to give</h3>
+      <p class="muted" style="margin-top:6px;">Choose whichever is easiest for you, then let us know your level so we can thank you properly.</p>
+      <div class="ways" id="waysList"></div>
+    </div>
+  </section>
+
+  <!-- ---------- Supporters wall ---------- -->
+  <section class="block">
+    <div class="wrap">
+      <h2>The Founders’ Wall</h2>
+      <p class="muted">Folotrak exists because these people believed in it first. Each one has a permanent place here and in the app. Names appear with each supporter’s permission.</p>
+      <div class="founders" id="wall"></div>
+    </div>
+  </section>
+
+  <!-- ---------- Our promise ---------- -->
+  <section class="block">
+    <div class="wrap two">
+      <div><h2>Our promise to you</h2></div>
+      <ul class="promise">
+        <li>We’ll thank you personally within 24 hours of your support.</li>
+        <li>Every month, you’ll get a short update on what we built, what the money paid for, and how the businesses are doing.</li>
+        <li>We keep a clear record of every amount received, through every channel, and every amount spent, and we share it in our monthly updates.</li>
+        <li>If we raise more than $2,500, the extra helps us reach more businesses at launch. If we raise less, every contribution still goes into building the app, starting with the most important features.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- FAQ ---------- -->
+  <section class="block">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details><summary>Is this an investment?</summary><p>No. Founding support is a gift to help us launch. You won’t own part of Folotrak or receive repayment. You’ll be recognised as one of the people who made it possible, and you’ll see exactly how your support was used.</p></details>
+      <details><summary>Who is Folotrak for?</summary><p>Small business owners who sell to repeat customers and run their business from a phone and WhatsApp: beauty and skincare, food and catering, fashion, salons, pharmacies and retail shops.</p></details>
+      <details><summary>Does the app exist yet?</summary><p>Yes. A working web pilot is being tested by business owners in Nigeria right now. Your support funds the proper Android and iPhone app and its launch.</p></details>
+      <details><summary>How do I pay, and is it secure?</summary><p>You can pay by card from any country through Flutterwave, a licensed payment company used by businesses across Africa. Supporters in the US can also give by Zelle, PayPal or bank transfer. See “Ways to give” above. We never ask for card details by message.</p></details>
+      <details><summary>Can I give a different amount, or stay anonymous?</summary><p>Of course. Choose “Give $250 or more” to enter any amount, and tell us if you’d rather not have your name shown on the wall.</p></details>
+      <details><summary>Who is behind Folotrak?</summary><p>Folotrak is built by Precious Omole, a customer experience and sales professional who has trained more than 120 people in customer service and wrote “6 Power Moves: 6 Secrets That Make People Buy Again & Again”.</p></details>
+    </div>
+  </section>
+
+  <!-- ---------- Founder note ---------- -->
+  <section class="block" style="border-top:0; padding-top:24px;">
+    <div class="wrap">
+      <div class="founder">
+        <h2 style="color:#F1F0EC">A note from the founder</h2>
+        <p>I’ve spent my career helping businesses look after their customers. Again and again, I see good businesses lose good customers simply because they’re too busy to remember them. Folotrak is my answer: a tool that remembers for them, so they can grow.</p>
+        <p>If you’ve ever been the customer nobody followed up, or the business owner trying to do everything alone, you understand why this matters. Thank you for being part of the beginning.</p>
+        <div class="sign">Precious Omole, Founder</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Folotrak by Praden Hub · Lagos, Nigeria ·
+    <a id="waLink" href="#">Chat with us on WhatsApp</a> ·
+    <a id="mailLink" href="#">Email us</a>
+  </div>
+</footer>
+
+</div><!-- /#full -->
+<script>
+  /* =====================================================================
+     EDIT THIS SECTION TO UPDATE THE PAGE
+     ===================================================================== */
+  var CONFIG = {
+    opensAt: '2026-12-21T00:00:00+01:00', // the page unlocks on its own at this moment (Lagos time)
+    previewCode: 'folotrak-preview',       // you can view the full page early at  supporters.html?preview=folotrak-preview
+    goal: 2500,                 // fundraising goal in US dollars
+    raised: 0,                  // update as support comes in
+    deadline: '31 Jan 2027',    // closing date shown on the receipt
+    links: {                    // paste your Flutterwave payment links here
+      friend: 'https://flutterwave.com/pay/folotrak-friend',
+      supporter: 'https://flutterwave.com/pay/folotrak-supporter',
+      champion: 'https://flutterwave.com/pay/folotrak-champion'
+    },
+    // Other ways to give. Leave any of these empty ('') to hide that option.
+    zelle: '',                  // the email or US phone number your Zelle is registered to
+    paypal: '',                 // your PayPal.me link, e.g. 'https://paypal.me/yourname'
+    bankTransfer: true,         // true shows "US bank transfer: message us for details"
+    whatsapp: '2347067197204',  // international format, digits only
+    email: '',                  // your business email
+    // Add supporters here, with their permission, in the order they gave.
+    // type: 'champion' ($250+), 'supporter' ($100) or 'friend' ($25). note and place are optional.
+    supporters: [
+      // { name: 'Ada Obi', type: 'champion', note: 'Because every customer deserves to feel remembered.', place: 'Houston, USA' },
+      // { name: 'Tunde Bakare', type: 'supporter', place: 'Lagos, Nigeria' },
+    ],
+    reservedSeats: 4            // empty places shown until filled (encourages the first supporters)
+  };
+  /* ===================================================================== */
+
+  function money(n) { return '$' + Number(n).toLocaleString('en-US'); }
+
+  var opensAt = new Date(CONFIG.opensAt).getTime();
+  var previewing = new URLSearchParams(location.search).get('preview') === CONFIG.previewCode;
+  if (Date.now() < opensAt && !previewing) {
+    // ---------- Locked: show only the small teaser ----------
+    document.getElementById('full').remove();
+    var teaser = document.getElementById('teaser'); teaser.hidden = false;
+    document.title = 'Folotrak Founding Supporters opens 21 December';
+    document.getElementById('notify').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' +
+      encodeURIComponent('Hi Precious, please let me know when Folotrak Founding Supporters opens.');
+    var tick = function () {
+      var ms = opensAt - Date.now();
+      if (ms <= 0) { location.reload(); return; }
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+      document.getElementById('count').innerHTML =
+        '<div><b>' + d + '</b><span>days</span></div><div><b>' + h + '</b><span>hours</span></div><div><b>' + m + '</b><span>minutes</span></div>';
+    };
+    tick(); setInterval(tick, 30000);
+  } else {
+    openPage();
+  }
+
+  function openPage() {
+  var pct = Math.max(0, Math.min(100, Math.round(CONFIG.raised / CONFIG.goal * 100)));
+  document.getElementById('goalText').textContent = money(CONFIG.goal);
+  document.getElementById('rGoal').textContent = money(CONFIG.goal);
+  document.getElementById('rRaised').textContent = money(CONFIG.raised);
+  document.getElementById('rDeadline').textContent = CONFIG.deadline;
+  document.getElementById('rCount').textContent = CONFIG.supporters.length;
+  document.getElementById('barWrap').setAttribute('aria-valuenow', pct);
+  document.getElementById('rLeft').textContent = CONFIG.raised >= CONFIG.goal
+    ? 'Goal reached. Thank you, every one of you.'
+    : money(CONFIG.goal - CONFIG.raised) + ' to go. Thank you for helping us get started.';
+  requestAnimationFrame(function () {
+    setTimeout(function () {
+      document.getElementById('bar').style.width = pct + '%';
+      if (pct >= 100) document.getElementById('stamp').classList.add('on');
+    }, 250);
+  });
+
+  document.querySelectorAll('.pay').forEach(function (a) {
+    var url = CONFIG.links[a.getAttribute('data-level')];
+    if (url) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; }
+    else { a.href = '#ways'; }
+  });
+
+  var wall = document.getElementById('wall');
+  var labels = { champion: 'Founding Champion', supporter: 'Founding Supporter', friend: 'Friend of Folotrak' };
+  var numbered = CONFIG.supporters.map(function (s, i) { return Object.assign({ n: i + 1 }, s); });
+  numbered.sort(function (a, b) { return (b.type === 'champion') - (a.type === 'champion') || a.n - b.n; });
+  numbered.forEach(function (s) {
+    var card = document.createElement('div');
+    card.className = 'fcard' + (s.type === 'champion' ? ' champ' : '');
+    var num = document.createElement('div'); num.className = 'num'; num.textContent = (labels[s.type] || 'Founding Supporter') + ' #' + s.n;
+    var nm = document.createElement('div'); nm.className = 'fname'; nm.textContent = s.name;
+    card.appendChild(num); card.appendChild(nm);
+    if (s.note) { var nt = document.createElement('p'); nt.className = 'fnote'; nt.textContent = '“' + s.note + '”'; card.appendChild(nt); }
+    if (s.place) { var pl = document.createElement('div'); pl.className = 'fplace'; pl.textContent = s.place; card.appendChild(pl); }
+    wall.appendChild(card);
+  });
+  var seats = Math.max(0, CONFIG.reservedSeats - CONFIG.supporters.length);
+  for (var k = 0; k < seats; k++) {
+    var seat = document.createElement('div');
+    seat.className = 'fcard seat';
+    seat.innerHTML = '<div class="num">Place #' + (CONFIG.supporters.length + k + 1) + '</div>' +
+      '<div class="fname">Reserved for a Founding Supporter</div>' + (k === 0 ? '<a href="#support">Claim this place</a>' : '');
+    wall.appendChild(seat);
+  }
+
+  var ways = document.getElementById('waysList');
+  var waMsg = function (t) { return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(t); };
+  var anyCard = CONFIG.links.friend || CONFIG.links.supporter || CONFIG.links.champion;
+  var cards = [];
+  if (anyCard) cards.push('<div class="way"><h4>Card, from any country</h4><p>Pay securely through Flutterwave using the buttons above.</p><a class="btn quiet" href="#support">Choose a level</a></div>');
+  if (CONFIG.zelle) cards.push('<div class="way"><h4>Zelle (US)</h4><p>Send through your bank’s Zelle to:</p><span class="handle" id="zelleHandle"></span><button class="copy" type="button" id="zelleCopy">Copy</button></div>');
+  if (CONFIG.paypal) cards.push('<div class="way"><h4>PayPal</h4><p>Give through PayPal from any account.</p><a class="btn quiet" target="_blank" rel="noopener" id="paypalBtn" href="#">Give with PayPal</a></div>');
+  if (CONFIG.bankTransfer) cards.push('<div class="way"><h4>US bank transfer</h4><p>Prefer a direct transfer? Message us and we’ll send the details privately.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak by bank transfer. Please send the details.') + '">Ask for transfer details</a></div>');
+  if (!cards.length) cards.push('<div class="way"><h4>Message us to give</h4><p>Our payment options are being set up. Message us and we’ll help you give today.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak.') + '">Message on WhatsApp</a></div>');
+  ways.innerHTML = cards.join('');
+  if (CONFIG.zelle) {
+    document.getElementById('zelleHandle').textContent = CONFIG.zelle;
+    document.getElementById('zelleCopy').addEventListener('click', function () {
+      var b = this;
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(CONFIG.zelle).then(done, function () {}); else done();
+    });
+  }
+  if (CONFIG.paypal) document.getElementById('paypalBtn').href = CONFIG.paypal;
+
+  var wa = document.getElementById('waLink');
+  wa.href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('Hi Precious, I would like to support Folotrak.');
+  wa.target = '_blank'; wa.rel = 'noopener';
+  var ml = document.getElementById('mailLink');
+  if (CONFIG.email) ml.href = 'mailto:' + CONFIG.email; else ml.style.display = 'none';
+  }
+</script>
+</body>
+</html>
