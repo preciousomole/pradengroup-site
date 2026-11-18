@@ -125,6 +125,17 @@
   .site-nav a:hover{color:var(--accent-text);}
   .site-nav a.nav-folo{color:var(--accent-text);font-weight:600;}
   .head-cta{padding:11px 18px;font-size:15px;}
+  .site-nav a.nav-verify{display:inline-flex;align-items:center;gap:6px;}
+  .site-nav a.nav-verify::before{content:"";width:15px;height:15px;flex:none;background:currentColor;-webkit-mask:var(--check-badge) center/contain no-repeat;mask:var(--check-badge) center/contain no-repeat;}
+  :root{--check-badge:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z'/%3E%3Cpath d='M8.8 12.2l2.2 2.2 4.2-4.6'/%3E%3C/svg%3E");}
+
+  /* Certificate verification band */
+  .verify-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 28px;margin-top:56px;padding:26px 30px;border-radius:22px;background:var(--brand-dark);color:#fff;}
+  .verify-band .vb-text{display:flex;align-items:center;gap:18px;}
+  .verify-band .vb-icon{flex:none;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.14);display:grid;place-items:center;}
+  .verify-band .vb-icon span{width:28px;height:28px;background:#fff;-webkit-mask:var(--check-badge) center/contain no-repeat;mask:var(--check-badge) center/contain no-repeat;}
+  .verify-band h3{font-size:22px;margin-bottom:4px;}
+  .verify-band p{color:rgba(255,255,255,.82);font-size:15.5px;max-width:52ch;}
   .logo-dark{display:none;}
   :root[data-theme="dark"] .logo-light{display:none;}
   :root[data-theme="dark"] .logo-dark{display:block;}
@@ -350,11 +361,16 @@
     .contact-grid{grid-template-columns:1fr;}
     .about-photo-wrap{max-width:420px;}
   }
-  @media (max-width: 1120px){
+  .site-nav a,.head-cta{white-space:nowrap;}
+  .head-row > a:first-child{flex:none;}
+  @media (max-width: 1360px){
+    .site-nav{gap:18px;}
+  }
+  @media (max-width: 1440px){
     .mode-switch .mode-name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
     .mode-switch button{padding:7px 9px;}
   }
-  @media (max-width: 820px){
+  @media (max-width: 1080px){
     .menu-btn{display:inline-block;}
     .head-cta{display:none;}
     .site-nav{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 18px;}
@@ -462,6 +478,7 @@
       <a href="#folotrak" class="nav-folo">Folotrak</a>
       <a href="#ebook">Ebook</a>
       <a href="#testimonials">Testimonials</a>
+      <a href="/verify/" class="nav-verify" data-track="nav_verify_certificate">Verify certificate</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="head-end">
@@ -681,6 +698,16 @@
         <a href="mailto:support.team@pradengroup.co" class="c-card" data-track="contact_click" data-method="email_support"><small>Support</small><b>support.team@pradengroup.co</b></a>
         <a href="https://wa.me/2349018941968" class="c-card" data-track="contact_click" data-method="whatsapp"><small>WhatsApp</small><b>Chat with us</b></a>
         <a href="tel:+2349018941968" class="c-card" data-track="contact_click" data-method="phone"><small>Phone</small><b>+234 901 894 1968</b></a>
+      </div>
+      <div class="verify-band" id="verify-certificate">
+        <div class="vb-text">
+          <div class="vb-icon" aria-hidden="true"><span></span></div>
+          <div>
+            <h3>Verify a Praden Group certificate</h3>
+            <p>Trained with us, or checking a candidate’s credential? Enter the certificate code to confirm it’s genuine.</p>
+          </div>
+        </div>
+        <a href="/verify/" class="btn btn-light" data-track="verify_band_click">Verify a certificate</a>
       </div>
     </div>
   </section>
