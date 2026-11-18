@@ -72,5 +72,9 @@ window.PRADEN_CERTS = {
  "479d763e0c9d4b70dc33272ec73d9862": [
   "o92iPYNnXQCqM1Qj",
   "8jSilfPetdXeOnwI3fqUkK29efPF+RdB9czqF4taVICi+Ej2v8zrfQV8eqx9+DwAQRS7yiP6K+fZjO552LGWmQ0HzRx8Vpb1a7Tw/nxB2/uHUqhtUwymqW/vikeDo0+3FVcFgbUs+k6nqA=="
+ ],
+ "6b5b49f8d3d64da3f7ee4513b437a1f9": [
+  "bhFZxm7VcAcAUBea",
+  "acBg8nyMK1yIjMYOs0ukeTTehjD9ZLZWTLd+35XC+oV+MmnRhQgVzrss5XjjCDHnCFLenlWBa9xH59ZTLnRSmEiLcYuDH1NKXu5WJzSevCGxsw0hACABlXtrXrhDLWZafUXMiVjxRg=="
  ]
 };
