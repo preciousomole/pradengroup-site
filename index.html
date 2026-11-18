@@ -464,6 +464,18 @@
   background:var(--paper-dim);
 }
 #ticket-view .ticket-wrap{width:100%;max-width:460px;}
+
+  /* Logo pop on hover */
+  .brand-logo{transition:transform .35s cubic-bezier(.34,1.56,.64,1),filter .35s ease;transform-origin:left center;}
+  a:hover > .brand-logo,a:focus-visible > .brand-logo{transform:scale(1.08) translateY(-2px);filter:drop-shadow(0 6px 14px rgba(31,119,101,.35));}
+  /* Contact cards bounce like bubbles */
+  @keyframes bubble{0%{transform:translateY(0) scale(1);}30%{transform:translateY(-10px) scale(1.04,.97);}50%{transform:translateY(0) scale(.98,1.03);}70%{transform:translateY(-5px) scale(1.02,.99);}100%{transform:translateY(-4px) scale(1.02);}}
+  .c-card:hover,.c-card:focus-visible{animation:bubble .7s cubic-bezier(.34,1.56,.64,1) forwards;box-shadow:0 14px 30px rgba(0,0,0,.28);}
+  .c-card{transition:background .2s,border-color .2s,box-shadow .3s;}
+  @media (prefers-reduced-motion: reduce){
+    .brand-logo,a:hover > .brand-logo{transition:none;transform:none;}
+    .c-card:hover,.c-card:focus-visible{animation:none;}
+  }
 </style>
 </head>
 <body>
