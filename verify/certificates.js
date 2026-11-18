@@ -60,5 +60,17 @@ window.PRADEN_CERTS = {
  "eeb498ed7e0511cda890b83a5041fcb8": [
   "6Doa9+xR18LY/lDF",
   "w2G4godCyNl5Jv+vKOpAKoIsWVh6bz4j2kCaJYKMW4NL9I061PxR5Lh/KccHJyClVERwe+wGpKIEVw67zkvzmMq/K8Dsz0pu2FXIh7VsLsvxR8kWwN0yN+kvr7BXi9nEKCsbGzEPrFuazw=="
+ ],
+ "c7cf5665af8e78d70b55e6b6ff09e617": [
+  "n0WEDM4KOE9kSS9P",
+  "XWhoX1JRQbPRXZAOleKw6N50HC5zpsoOUOUP8JfDeWFKnW+2tFkn/J+CSzrVOgq+QhY5SpK6KPB/t6GnJrKzzucyBT2VpbvQXec5gbeBurF+SO1bx9RaoIqtsDqd8DyG1BeyxvwJCw=="
+ ],
+ "ca40ab85b47f2ad5e5784608c99aba0f": [
+  "o5woMgegrB7ArhuV",
+  "4+LlnR0O7VrxihP7TG/3lAJIPdAy0bHT4q1K4ghPhYDdWd8AEQSWw7nwWWcjXNwW5o0/RCpv1mlEYkRd1z+dxR/yWzmM0ax1cl2WSanSF6ZWNkGOW0kedyYoX3kNZJhd8yGFfRWinKzA"
+ ],
+ "479d763e0c9d4b70dc33272ec73d9862": [
+  "o92iPYNnXQCqM1Qj",
+  "8jSilfPetdXeOnwI3fqUkK29efPF+RdB9czqF4taVICi+Ej2v8zrfQV8eqx9+DwAQRS7yiP6K+fZjO552LGWmQ0HzRx8Vpb1a7Tw/nxB2/uHUqhtUwymqW/vikeDo0+3FVcFgbUs+k6nqA=="
  ]
 };
