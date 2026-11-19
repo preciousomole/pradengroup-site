@@ -109,7 +109,14 @@
   .way button.copy { background: transparent; border: 1.5px solid var(--line); color: var(--ink); border-radius: 10px; padding: 8px 14px; font: inherit; font-size: 0.92rem; cursor: pointer; margin-left: 6px; }
   .way .btn { padding: 11px 18px; font-size: 0.97rem; }
   @media (max-width: 860px) { .ways { grid-template-columns: 1fr; } }
-  .founders { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; margin-top: 22px; }
+  .bankbox { margin-top: 14px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; padding: 6px 14px 12px; }
+  .brow { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .brow span { display: block; font-size: 0.8rem; color: var(--muted); }
+  .brow b { font-family: var(--mono); font-weight: 500; font-size: 0.97rem; word-break: break-all; }
+  .brow .copy { margin-left: 0; }
+  .bnote { font-size: 0.88rem; color: var(--muted); margin: 10px 0 0; }
+  .bwarn { color: #8A4B00; background: #FFF3DC; border-radius: 8px; padding: 8px 10px; }
+    .founders { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; margin-top: 22px; }
   .fcard { border-radius: 18px; padding: 26px 24px 22px; background: var(--paper); border: 1.5px solid var(--line); display: flex; flex-direction: column; min-height: 190px; }
   .fcard .num { font-size: 0.88rem; color: var(--muted); font-weight: 500; }
   .fcard .fname { font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1.1; margin: 10px 0 8px; letter-spacing: -0.01em; overflow-wrap: anywhere; }
@@ -363,7 +370,18 @@
     // Other ways to give. Leave any of these empty ('') to hide that option.
     zelle: '',                  // the email or US phone number your Zelle is registered to
     paypal: '',                 // your PayPal.me link, e.g. 'https://paypal.me/yourname'
-    bankTransfer: true,         // true shows "US bank transfer: message us for details"
+    bankTransfer: true,         // true shows the "US bank transfer" option
+    // Your US bank details for transfers. Leave empty to offer details by WhatsApp instead.
+    // NEVER add passwords, PINs, card numbers or your SSN here.
+    bank: {
+      holder: 'Precious Omole',               // account holder name, exactly as the bank has it
+      name: 'Lead Bank',                 // bank name
+      routing: '101019644',              // 9-digit routing (ABA) number
+      account: '219182662915',              // account number
+      type: 'Checking',         // account type
+      address: '1801 Main St., Kansas City, MO 64108, USA', // bank address
+      swift: ''                 // only needed for international wires (optional)
+    },
     whatsapp: '2347067197204',  // international format, digits only
     email: '',                  // your business email
     // Add supporters here, with their permission, in the order they gave.
@@ -453,7 +471,10 @@
   if (anyCard) cards.push('<div class="way"><h4>Card, from any country</h4><p>Pay securely through Flutterwave using the buttons above.</p><a class="btn quiet" href="#support">Choose a level</a></div>');
   if (CONFIG.zelle) cards.push('<div class="way"><h4>Zelle (US)</h4><p>Send through your bank’s Zelle to:</p><span class="handle" id="zelleHandle"></span><button class="copy" type="button" id="zelleCopy">Copy</button></div>');
   if (CONFIG.paypal) cards.push('<div class="way"><h4>PayPal</h4><p>Give through PayPal from any account.</p><a class="btn quiet" target="_blank" rel="noopener" id="paypalBtn" href="#">Give with PayPal</a></div>');
-  if (CONFIG.bankTransfer) cards.push('<div class="way"><h4>US bank transfer</h4><p>Prefer a direct transfer? Message us and we’ll send the details privately.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak by bank transfer. Please send the details.') + '">Ask for transfer details</a></div>');
+  var B = CONFIG.bank || {};
+  var hasBank = B.holder && B.routing && B.account;
+  if (CONFIG.bankTransfer && hasBank) cards.push('<div class="way"><h4>US bank transfer (ACH)</h4><p>Send a direct transfer from any US bank. It may take 1 to 2 business days to arrive.</p><button class="btn quiet" type="button" id="bankBtn" aria-expanded="false" aria-controls="bankBox">See transfer details</button><div class="bankbox" id="bankBox" hidden></div></div>');
+  else if (CONFIG.bankTransfer) cards.push('<div class="way"><h4>US bank transfer</h4><p>Prefer a direct transfer? Message us and we’ll send the details privately.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak by bank transfer. Please send the details.') + '">Get transfer details</a></div>');
   if (!cards.length) cards.push('<div class="way"><h4>Message us to give</h4><p>Our payment options are being set up. Message us and we’ll help you give today.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak.') + '">Message on WhatsApp</a></div>');
   ways.innerHTML = cards.join('');
   if (CONFIG.zelle) {
@@ -465,6 +486,29 @@
     });
   }
   if (CONFIG.paypal) document.getElementById('paypalBtn').href = CONFIG.paypal;
+  if (CONFIG.bankTransfer && hasBank) {
+    var rows = [['Account name', B.holder], ['Bank', B.name], ['Routing number', B.routing], ['Account number', B.account], ['Account type', B.type], ['Bank address', B.address], ['SWIFT (international wires)', B.swift]]
+      .filter(function (r) { return r[1]; });
+    var box = document.getElementById('bankBox');
+    box.innerHTML = rows.map(function (r, i) {
+      return '<div class="brow"><div><span>' + r[0] + '</span><b id="bv' + i + '"></b></div><button type="button" class="copy" data-i="' + i + '">Copy</button></div>';
+    }).join('') + '<p class="bnote bwarn">Please enter the beneficiary name exactly as <b>' + B.holder + '</b>. Transfers with a different name are returned by the bank.</p>' +
+      '<p class="bnote">Use the reference <b>FOLOTRAK</b> and your name. After sending, <a target="_blank" rel="noopener" href="' +
+      waMsg('Hi Precious, I have just sent a transfer to support Folotrak.') + '">message us</a> so we can thank you and add you to the Founders’ Wall.</p>';
+    rows.forEach(function (r, i) { document.getElementById('bv' + i).textContent = r[1]; });
+    box.querySelectorAll('button.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var v = rows[Number(btn.getAttribute('data-i'))][1];
+        var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); };
+        if (navigator.clipboard) navigator.clipboard.writeText(v).then(done, function () {}); else done();
+      });
+    });
+    document.getElementById('bankBtn').addEventListener('click', function () {
+      var open = box.hidden; box.hidden = !open;
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+      this.textContent = open ? 'Hide transfer details' : 'See transfer details';
+    });
+  }
 
   var wa = document.getElementById('waLink');
   wa.href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('Hi Precious, I would like to support Folotrak.');
