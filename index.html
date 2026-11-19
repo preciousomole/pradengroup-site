@@ -610,9 +610,13 @@
     #fl-banner { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; margin: 16px auto; max-width: 980px; padding: 0 16px; }
     #fl-banner .fl-inner { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
       background: #FFF3DC; border: 1.5px solid #F7A21B; border-radius: 14px; padding: 14px 18px; color: #1F2430; }
-    #fl-banner .fl-text { font-size: 15px; line-height: 1.45; }
+    #fl-banner .fl-text { font-size: 15px; line-height: 1.45; flex: 1 1 360px; }
     #fl-banner .fl-text b { font-weight: 700; }
     #fl-banner .fl-pill { font-size: 13px; font-weight: 600; background: #FFFFFF; border-radius: 999px; padding: 6px 12px; white-space: nowrap; }
+    #fl-banner .fl-count { display: flex; gap: 6px; }
+    #fl-banner .fl-count div { background: #FFFFFF; border-radius: 10px; min-width: 52px; padding: 6px 8px; text-align: center; }
+    #fl-banner .fl-count b { display: block; font-size: 19px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    #fl-banner .fl-count span { font-size: 11px; color: #6B6F7B; }
     #fl-banner a.fl-btn { background: #F7A21B; color: #1F2430; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 10px; padding: 9px 16px; white-space: nowrap; }
     #fl-banner a.fl-btn:focus-visible { outline: 3px solid #1F2430; outline-offset: 2px; }
   </style>
@@ -627,20 +631,30 @@
       var box = document.getElementById('fl-banner');
       var text = document.getElementById('fl-text');
       var action = document.getElementById('fl-action');
+      var built = false;
       function render() {
         var ms = OPENS - Date.now();
         if (ms > 0) {
-          var days = Math.ceil(ms / 864e5);
-          text.innerHTML = '<b>Folotrak Founding Supporters</b> opens on 21 December. Be one of the first names on our Founders’ Wall.';
-          action.innerHTML = '<span class="fl-pill">' + days + (days === 1 ? ' day' : ' days') + ' to go</span>';
+          if (!built) {
+            text.innerHTML = '<b>Folotrak Founding Supporters</b> opens on 21 December. Be one of the first names on our Founders’ Wall.';
+            action.innerHTML = '<div class="fl-count" aria-label="Time until it opens">' +
+              ['days', 'hrs', 'min', 'sec'].map(function (u) { return '<div><b data-u="' + u + '">0</b><span>' + u + '</span></div>'; }).join('') + '</div>';
+            built = true;
+          }
+          var v = { days: Math.floor(ms / 864e5), hrs: Math.floor(ms / 36e5) % 24, min: Math.floor(ms / 6e4) % 60, sec: Math.floor(ms / 1e3) % 60 };
+          action.querySelectorAll('b[data-u]').forEach(function (el) {
+            var n = v[el.getAttribute('data-u')];
+            el.textContent = el.getAttribute('data-u') === 'days' ? n : ('0' + n).slice(-2);
+          });
         } else {
+          built = false;
           text.innerHTML = '<b>Folotrak Founding Supporters is now open.</b> Help launch a customer care office in every small business owner’s phone.';
           action.innerHTML = '<a class="fl-btn" href="' + PAGE + '">Become a Founding Supporter</a>';
         }
         box.style.display = 'block';
       }
       render();
-      setInterval(render, 60000);
+      setInterval(render, 1000);
     })();
   </script>
 </div>

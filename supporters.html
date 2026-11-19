@@ -266,7 +266,7 @@
   <section class="block" id="support">
     <div class="wrap">
       <h2>Choose how you’d like to support</h2>
-      <p class="muted">Pay by card from anywhere, or use Zelle, PayPal or bank transfer if you’re in the US.</p>
+      <p class="muted">Pay by card from anywhere, or by bank transfer if you’re in the US.</p>
       <div class="levels">
         <div class="level">
           <h3>Friend of Folotrak</h3>
@@ -324,7 +324,7 @@
       <details><summary>Is this an investment?</summary><p>No. Founding support is a gift to help us launch. You won’t own part of Folotrak or receive repayment. You’ll be recognised as one of the people who made it possible, and you’ll see exactly how your support was used.</p></details>
       <details><summary>Who is Folotrak for?</summary><p>Small business owners who sell to repeat customers and run their business from a phone and WhatsApp: beauty and skincare, food and catering, fashion, salons, pharmacies and retail shops.</p></details>
       <details><summary>Does the app exist yet?</summary><p>Yes. A working web pilot is being tested by business owners in Nigeria right now. Your support funds the proper Android and iPhone app and its launch.</p></details>
-      <details><summary>How do I pay, and is it secure?</summary><p>You can pay by card from any country through Flutterwave, a licensed payment company used by businesses across Africa. Supporters in the US can also give by Zelle, PayPal or bank transfer. See “Ways to give” above. We never ask for card details by message.</p></details>
+      <details><summary>How do I pay, and is it secure?</summary><p>You can pay by card from any country through Flutterwave, a licensed payment company used by businesses across Africa. Supporters in the US can also give by bank transfer. See “Ways to give” above. We never ask for card details by message.</p></details>
       <details><summary>Can I give a different amount, or stay anonymous?</summary><p>Of course. Choose “Give $250 or more” to enter any amount, and tell us if you’d rather not have your name shown on the wall.</p></details>
       <details><summary>Who is behind Folotrak?</summary><p>Folotrak is built by Precious Omole, a customer experience and sales professional who has trained more than 120 people in customer service and wrote “6 Power Moves: 6 Secrets That Make People Buy Again & Again”.</p></details>
     </div>
@@ -368,8 +368,6 @@
       champion: 'https://flutterwave.com/pay/folotrak-champion'
     },
     // Other ways to give. Leave any of these empty ('') to hide that option.
-    zelle: '',                  // the email or US phone number your Zelle is registered to
-    paypal: '',                 // your PayPal.me link, e.g. 'https://paypal.me/yourname'
     bankTransfer: true,         // true shows the "US bank transfer" option
     // Your US bank details for transfers. Leave empty to offer details by WhatsApp instead.
     // NEVER add passwords, PINs, card numbers or your SSN here.
@@ -469,23 +467,12 @@
   var anyCard = CONFIG.links.friend || CONFIG.links.supporter || CONFIG.links.champion;
   var cards = [];
   if (anyCard) cards.push('<div class="way"><h4>Card, from any country</h4><p>Pay securely through Flutterwave using the buttons above.</p><a class="btn quiet" href="#support">Choose a level</a></div>');
-  if (CONFIG.zelle) cards.push('<div class="way"><h4>Zelle (US)</h4><p>Send through your bank’s Zelle to:</p><span class="handle" id="zelleHandle"></span><button class="copy" type="button" id="zelleCopy">Copy</button></div>');
-  if (CONFIG.paypal) cards.push('<div class="way"><h4>PayPal</h4><p>Give through PayPal from any account.</p><a class="btn quiet" target="_blank" rel="noopener" id="paypalBtn" href="#">Give with PayPal</a></div>');
   var B = CONFIG.bank || {};
   var hasBank = B.holder && B.routing && B.account;
   if (CONFIG.bankTransfer && hasBank) cards.push('<div class="way"><h4>US bank transfer (ACH)</h4><p>Send a direct transfer from any US bank. It may take 1 to 2 business days to arrive.</p><button class="btn quiet" type="button" id="bankBtn" aria-expanded="false" aria-controls="bankBox">See transfer details</button><div class="bankbox" id="bankBox" hidden></div></div>');
   else if (CONFIG.bankTransfer) cards.push('<div class="way"><h4>US bank transfer</h4><p>Prefer a direct transfer? Message us and we’ll send the details privately.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak by bank transfer. Please send the details.') + '">Get transfer details</a></div>');
   if (!cards.length) cards.push('<div class="way"><h4>Message us to give</h4><p>Our payment options are being set up. Message us and we’ll help you give today.</p><a class="btn quiet" target="_blank" rel="noopener" href="' + waMsg('Hi Precious, I would like to support Folotrak.') + '">Message on WhatsApp</a></div>');
   ways.innerHTML = cards.join('');
-  if (CONFIG.zelle) {
-    document.getElementById('zelleHandle').textContent = CONFIG.zelle;
-    document.getElementById('zelleCopy').addEventListener('click', function () {
-      var b = this;
-      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
-      if (navigator.clipboard) navigator.clipboard.writeText(CONFIG.zelle).then(done, function () {}); else done();
-    });
-  }
-  if (CONFIG.paypal) document.getElementById('paypalBtn').href = CONFIG.paypal;
   if (CONFIG.bankTransfer && hasBank) {
     var rows = [['Account name', B.holder], ['Bank', B.name], ['Routing number', B.routing], ['Account number', B.account], ['Account type', B.type], ['Bank address', B.address], ['SWIFT (international wires)', B.swift]]
       .filter(function (r) { return r[1]; });
