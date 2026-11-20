@@ -25,7 +25,7 @@
   })();
 </script>
 <title>Praden Hub — Customer Experience Consulting, Solutions &amp; Training</title>
-<meta name="description" content="Praden Hub: customer experience consulting, solutions and training in Nigeria. We also train and refer remote-ready customer service reps, virtual assistants, admin assistants, intake specialists and SDRs to companies in the US and UK.">
+<meta name="description" content="Praden Hub: CX consulting, solutions and training in Nigeria, plus trained, remote-ready talent for US and UK companies.">
 <meta property="og:title" content="Praden Hub — Customer Experience Consulting, Solutions &amp; Training">
 <meta property="og:description" content="We help founders and growing businesses turn customer experience into their lowest-cost, highest-retention growth lever.">
 <meta property="og:type" content="website">
@@ -427,7 +427,7 @@
   #ticket-view .status-badge.pending {background:#F4EEDD;color:var(--brand);}
   #ticket-view .status-badge .dot {width:7px;height:7px;border-radius:50%;background:currentColor;}
   #ticket-view .ticket-top .eyebrow {font-family:'Figtree',sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px;}
-  #ticket-view .ticket-top h1 {font-size:28px;margin-bottom:6px;}
+  #ticket-view .ticket-top h1, #ticket-view .ticket-top h2.ttl {font-size:28px;margin-bottom:6px;}
   #ticket-view .ticket-top .sub {font-size:14.5px;color:var(--slate);}
   #ticket-view .ticket-body {padding:28px 32px;}
   #ticket-view .row {
@@ -1392,7 +1392,7 @@
     html += '<div class="ticket-top">';
     html += '  <span class="status-badge success"><span class="dot"></span>Payment confirmed</span>';
     html += '  <p class="eyebrow">Praden Hub</p>';
-    html += '  <h1>Your ebook is ready.</h1>';
+    html += '  <h2 class="ttl">Your ebook is ready.</h2>';
     html += '  <p class="sub">6 Secrets That Make People Buy Again &amp; Again</p>';
     html += '</div>';
     html += '<div class="ticket-body">';
@@ -1411,7 +1411,7 @@
     html += '<div class="ticket-top">';
     html += '  <span class="status-badge failed"><span class="dot"></span>Payment not completed</span>';
     html += '  <p class="eyebrow">Praden Hub</p>';
-    html += '  <h1>Something didn\'t go through.</h1>';
+    html += '  <h2 class="ttl">Something didn\'t go through.</h2>';
     html += '  <p class="sub">Your ebook purchase was not completed.</p>';
     html += '</div>';
     html += '<div class="ticket-body">';
@@ -1426,7 +1426,7 @@
     html += '<div class="ticket-top">';
     html += '  <span class="status-badge success"><span class="dot"></span>Payment confirmed</span>';
     html += '  <p class="eyebrow">The CX Advantage</p>';
-    html += '  <h1>You\'re in.</h1>';
+    html += '  <h2 class="ttl">You\'re in.</h2>';
     html += '  <p class="sub">Saturday, 17th October · 12:00 PM</p>';
     html += '</div>';
     html += '<div class="ticket-body">';
@@ -1446,7 +1446,7 @@
     html += '<div class="ticket-top">';
     html += '  <span class="status-badge failed"><span class="dot"></span>Payment not completed</span>';
     html += '  <p class="eyebrow">The CX Advantage</p>';
-    html += '  <h1>Something didn\'t go through.</h1>';
+    html += '  <h2 class="ttl">Something didn\'t go through.</h2>';
     html += '  <p class="sub">Your seat was not reserved.</p>';
     html += '</div>';
     html += '<div class="ticket-body">';
@@ -1461,7 +1461,7 @@
     html += '<div class="ticket-top">';
     html += '  <span class="status-badge pending"><span class="dot"></span>Payment processing</span>';
     html += '  <p class="eyebrow">The CX Advantage</p>';
-    html += '  <h1>Almost there.</h1>';
+    html += '  <h2 class="ttl">Almost there.</h2>';
     html += '  <p class="sub">We\'re confirming your payment.</p>';
     html += '</div>';
     html += '<div class="ticket-body">';
@@ -1473,7 +1473,7 @@
   } else {
     html += '<div class="ticket-top">';
     html += '  <p class="eyebrow">The CX Advantage</p>';
-    html += '  <h1>No payment details found.</h1>';
+    html += '  <h2 class="ttl">No payment details found.</h2>';
     html += '  <p class="sub">This page is for people arriving after a payment.</p>';
     html += '</div>';
     html += '<div class="ticket-note">';
