@@ -592,9 +592,24 @@
   .btn-hire:hover{transform:translateY(-2px);}
   .hire-band .more{display:inline-block;margin-top:14px;color:#fff;font-weight:600;}
   @media (max-width:900px){ .hire-band .wrap{grid-template-columns:1fr;gap:32px;} }
-  @media (min-width:1025px) and (max-width:1240px){ .site-nav a.nav-verify{display:none;} .mode-switch .mode-name{display:none;} }
+  @media (min-width:1025px) and (max-width:1240px){ .mode-switch .mode-name{display:none;} }
 
   .reg-line{display:inline-block;margin-top:6px;font-size:13px;opacity:.8;}
+
+  /* Registration strip above the header */
+  .reg-strip{background:var(--forest);color:rgba(255,255,255,.88);font-size:13px;line-height:1.3;}
+  .reg-strip .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:36px;padding-top:6px;padding-bottom:6px;}
+  .reg-strip .reg-id{display:inline-flex;align-items:center;gap:8px;font-weight:600;}
+  .reg-strip .reg-id::before{content:"";width:14px;height:14px;flex:none;background:var(--sun);-webkit-mask:var(--check-badge) center/contain no-repeat;mask:var(--check-badge) center/contain no-repeat;}
+  .reg-strip .reg-links{display:flex;gap:18px;}
+  .reg-strip a{color:#fff;text-decoration:none;font-weight:600;} .reg-strip a:hover{text-decoration:underline;}
+  
+  @media (max-width:760px){ .reg-strip .wrap{justify-content:center;} .reg-strip .reg-links{display:none;} }
+  /* Roomier main menu: secondary links live in the mobile menu, the strip and the footer */
+  .site-nav{gap:34px;}
+  .site-nav a.nav-more{display:none;}
+  @media (max-width:1360px){ .site-nav{gap:26px;} }
+  @media (max-width:1080px){ .site-nav a.nav-more{display:block;} }
 </style>
 <style>
   .hire-hero{background:var(--forest);color:#fff;padding:90px 0 80px;}
@@ -641,6 +656,12 @@
 </head>
 <body>
 <div id="site-main">
+<div class="reg-strip" role="note" aria-label="Business registration">
+  <div class="wrap">
+    <span class="reg-id">RC - 10024514</span>
+    <span class="reg-links"><a href="/verify/" data-track="strip_verify_certificate">Verify a certificate</a><a href="mailto:info@pradengroup.co" data-track="strip_email">info@pradengroup.co</a></span>
+  </div>
+</div>
 <header class="site-head" id="top">
   <div class="wrap head-row">
     <a href="/" aria-label="Praden Hub home"><img src="/images/praden-hub-logo.svg" alt="Praden Hub" class="brand-logo logo-light"><img src="/images/praden-hub-logo-dark.svg" alt="" aria-hidden="true" class="brand-logo logo-dark"></a>
@@ -649,9 +670,9 @@
       <a href="/#services">Services</a>
       <a href="/#folotrak" class="nav-folo">Folotrak</a>
       <a href="/#ebook">Ebook</a>
-      <a href="/#testimonials">Testimonials</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/verify/" class="nav-verify" data-track="nav_verify_certificate">Verify certificate</a>
+      <a href="/#testimonials" class="nav-more">Testimonials</a>
+      <a href="/#faq" class="nav-more">FAQ</a>
+      <a href="/verify/" class="nav-verify nav-more" data-track="nav_verify_certificate">Verify certificate</a>
       <a href="/hire/" class="nav-hire" aria-current="page" data-track="nav_hire_talent">Hire talent</a>
       <a href="/#contact">Contact</a>
     </nav>
@@ -687,7 +708,7 @@
 </main>
 <footer class="site-foot">
   <div class="wrap foot-row">
-    <div><strong>Praden Hub</strong> · Customer Experience Consulting, Solutions &amp; Training<br><span class="reg-line">Registered in Nigeria with the Corporate Affairs Commission · Business Name Reg. No. 10024514</span></div>
+    <div><strong>Praden Hub</strong> · Customer Experience Consulting, Solutions &amp; Training<br><span class="reg-line">RC - 10024514</span></div>
     <div><a href="mailto:info@pradengroup.co">info@pradengroup.co</a> · <a href="mailto:support.team@pradengroup.co">support.team@pradengroup.co</a></div>
     <div>Driving value… building trust… · © <span id="yr">2026</span></div>
     <div><a href="/verify/">Verify a certificate</a> · <a href="#top">Back to top</a></div>

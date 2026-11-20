@@ -35,7 +35,7 @@
 <meta property="og:site_name" content="Praden Hub">
 <meta property="og:image" content="https://pradengroup.co/images/praden-hub-share.png">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pradengroup.co/#org", "name": "Praden Hub", "alternateName": ["Praden Group"], "url": "https://pradengroup.co/", "logo": "https://pradengroup.co/images/praden-hub-logo.svg", "email": "info@pradengroup.co", "description": "Praden Hub is a customer experience consulting, solutions and training company in Nigeria. It trains remote-ready customer service, virtual assistant, administrative, intake and sales development professionals and refers pre-interviewed candidates to companies in the United States and United Kingdom.", "founder": {"@id": "https://pradengroup.co/#founder"}, "areaServed": ["Nigeria", "United States", "United Kingdom"], "knowsAbout": ["Customer experience", "Customer service training", "Remote hiring", "Virtual assistants", "Sales development", "Legal intake"], "legalName": "Praden Hub", "identifier": {"@type": "PropertyValue", "propertyID": "CAC Business Name Registration Number (Nigeria)", "value": "10024514"}, "address": {"@type": "PostalAddress", "addressLocality": "Lagos", "addressRegion": "Lagos State", "addressCountry": "NG"}, "foundingLocation": "Lagos, Nigeria"}, {"@type": "Person", "@id": "https://pradengroup.co/#founder", "name": "Precious Omole", "alternateName": "Praden", "jobTitle": "Founder and Lead Consultant", "worksFor": {"@id": "https://pradengroup.co/#org"}}, {"@type": "ProfessionalService", "@id": "https://pradengroup.co/#service", "name": "Praden Hub", "url": "https://pradengroup.co/", "email": "info@pradengroup.co", "provider": {"@id": "https://pradengroup.co/#org"}, "serviceType": ["Customer experience consulting", "Customer service and sales training", "Remote talent referral"], "areaServed": ["Nigeria", "United States", "United Kingdom"]}, {"@type": "WebSite", "@id": "https://pradengroup.co/#website", "url": "https://pradengroup.co/", "name": "Praden Hub", "publisher": {"@id": "https://pradengroup.co/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pradengroup.co/#org", "name": "Praden Hub", "alternateName": ["Praden Group"], "url": "https://pradengroup.co/", "logo": "https://pradengroup.co/images/praden-hub-logo.svg", "email": "info@pradengroup.co", "description": "Praden Hub is a customer experience consulting, solutions and training company in Nigeria. It trains remote-ready customer service, virtual assistant, administrative, intake and sales development professionals and refers pre-interviewed candidates to companies in the United States and United Kingdom.", "founder": {"@id": "https://pradengroup.co/#founder"}, "areaServed": ["Nigeria", "United States", "United Kingdom"], "knowsAbout": ["Customer experience", "Customer service training", "Remote hiring", "Virtual assistants", "Sales development", "Legal intake"], "legalName": "Praden Hub", "identifier": {"@type": "PropertyValue", "propertyID": "RC", "value": "RC - 10024514"}, "address": {"@type": "PostalAddress", "addressLocality": "Lagos", "addressRegion": "Lagos State", "addressCountry": "NG"}, "foundingLocation": "Lagos, Nigeria"}, {"@type": "Person", "@id": "https://pradengroup.co/#founder", "name": "Precious Omole", "alternateName": "Praden", "jobTitle": "Founder and Lead Consultant", "worksFor": {"@id": "https://pradengroup.co/#org"}}, {"@type": "ProfessionalService", "@id": "https://pradengroup.co/#service", "name": "Praden Hub", "url": "https://pradengroup.co/", "email": "info@pradengroup.co", "provider": {"@id": "https://pradengroup.co/#org"}, "serviceType": ["Customer experience consulting", "Customer service and sales training", "Remote talent referral"], "areaServed": ["Nigeria", "United States", "United Kingdom"]}, {"@type": "WebSite", "@id": "https://pradengroup.co/#website", "url": "https://pradengroup.co/", "name": "Praden Hub", "publisher": {"@id": "https://pradengroup.co/#org"}}]}</script>
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💚</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -594,14 +594,35 @@
   .btn-hire:hover{transform:translateY(-2px);}
   .hire-band .more{display:inline-block;margin-top:14px;color:#fff;font-weight:600;}
   @media (max-width:900px){ .hire-band .wrap{grid-template-columns:1fr;gap:32px;} }
-  @media (min-width:1025px) and (max-width:1240px){ .site-nav a.nav-verify{display:none;} .mode-switch .mode-name{display:none;} }
+  @media (min-width:1025px) and (max-width:1240px){ .mode-switch .mode-name{display:none;} }
 
   .reg-line{display:inline-block;margin-top:6px;font-size:13px;opacity:.8;}
+
+  /* Registration strip above the header */
+  .reg-strip{background:var(--forest);color:rgba(255,255,255,.88);font-size:13px;line-height:1.3;}
+  .reg-strip .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:36px;padding-top:6px;padding-bottom:6px;}
+  .reg-strip .reg-id{display:inline-flex;align-items:center;gap:8px;font-weight:600;}
+  .reg-strip .reg-id::before{content:"";width:14px;height:14px;flex:none;background:var(--sun);-webkit-mask:var(--check-badge) center/contain no-repeat;mask:var(--check-badge) center/contain no-repeat;}
+  .reg-strip .reg-links{display:flex;gap:18px;}
+  .reg-strip a{color:#fff;text-decoration:none;font-weight:600;} .reg-strip a:hover{text-decoration:underline;}
+  
+  @media (max-width:760px){ .reg-strip .wrap{justify-content:center;} .reg-strip .reg-links{display:none;} }
+  /* Roomier main menu: secondary links live in the mobile menu, the strip and the footer */
+  .site-nav{gap:34px;}
+  .site-nav a.nav-more{display:none;}
+  @media (max-width:1360px){ .site-nav{gap:26px;} }
+  @media (max-width:1080px){ .site-nav a.nav-more{display:block;} }
 </style>
 </head>
 <body>
 <div id="site-main">
 
+<div class="reg-strip" role="note" aria-label="Business registration">
+  <div class="wrap">
+    <span class="reg-id">RC - 10024514</span>
+    <span class="reg-links"><a href="/verify/" data-track="strip_verify_certificate">Verify a certificate</a><a href="mailto:info@pradengroup.co" data-track="strip_email">info@pradengroup.co</a></span>
+  </div>
+</div>
 <header class="site-head" id="top">
   <div class="wrap head-row">
     <a href="#top" aria-label="Praden Hub home"><img src="/images/praden-hub-logo.svg" alt="Praden Hub" class="brand-logo logo-light"><img src="/images/praden-hub-logo-dark.svg" alt="" aria-hidden="true" class="brand-logo logo-dark"></a>
@@ -610,9 +631,9 @@
       <a href="#services">Services</a>
       <a href="#folotrak" class="nav-folo">Folotrak</a>
       <a href="#ebook">Ebook</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#faq">FAQ</a>
-      <a href="/verify/" class="nav-verify" data-track="nav_verify_certificate">Verify certificate</a>
+      <a href="#testimonials" class="nav-more">Testimonials</a>
+      <a href="#faq" class="nav-more">FAQ</a>
+      <a href="/verify/" class="nav-verify nav-more" data-track="nav_verify_certificate">Verify certificate</a>
       <a href="/hire/" class="nav-hire" data-track="nav_hire_talent">Hire talent</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -803,7 +824,7 @@
           <li>Trained in live role-play and real script practice</li>
           <li>Pre-interviewed by us before you interview them</li>
           <li>People we’ve trained work with US and UK companies today</li>
-          <li>CAC-registered in Nigeria · BN 10024514</li>
+          <li>RC - 10024514</li>
         </ul>
         <a class="btn-hire" href="/hire/" data-track="home_hire_through_us">Hire through us <small>For companies in the US &amp; UK</small></a>
         <a class="more" href="/hire/#how" data-track="home_hire_how">See how it works ›</a>
@@ -1143,7 +1164,7 @@
 
 <footer class="site-foot">
   <div class="wrap foot-row">
-    <div><strong>Praden Hub</strong> · Customer Experience Consulting, Solutions &amp; Training<br><span class="reg-line">Registered in Nigeria with the Corporate Affairs Commission · Business Name Reg. No. 10024514</span></div>
+    <div><strong>Praden Hub</strong> · Customer Experience Consulting, Solutions &amp; Training<br><span class="reg-line">RC - 10024514</span></div>
     <div><a href="mailto:info@pradengroup.co">info@pradengroup.co</a> · <a href="mailto:support.team@pradengroup.co">support.team@pradengroup.co</a></div>
     <div>Driving value… building trust… · © <span id="yr">2026</span></div>
     <div><a href="/verify/">Verify a certificate</a> · <a href="#top">Back to top</a></div>
