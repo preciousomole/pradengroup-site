@@ -615,6 +615,21 @@
   .site-nav a.nav-more{display:none;}
   @media (max-width:1360px){ .site-nav{gap:26px;} }
   @media (max-width:1080px){ .site-nav a.nav-more{display:block;} }
+
+
+  /* Talent pool invitation for candidates */
+  .talent-band{background:var(--sun);color:var(--forest);}
+  .talent-band .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;}
+  .talent-band .kicker{color:var(--forest);opacity:.8;}
+  .talent-band h2{color:var(--forest);margin-bottom:14px;}
+  .talent-band .lede{color:var(--forest);opacity:.88;max-width:60ch;}
+  .talent-facts{margin-top:14px;font-weight:700;font-size:15px;color:var(--forest);}
+  .talent-act{display:flex;justify-content:flex-end;}
+  .btn-talent{display:flex;flex-direction:column;gap:3px;padding:20px 28px;border-radius:20px;background:var(--forest);color:#fff;text-decoration:none;font-weight:800;font-size:20px;box-shadow:0 14px 30px -12px rgba(0,0,0,.4);transition:transform .2s;}
+  .btn-talent small{font-size:14px;font-weight:600;opacity:.85;}
+  .btn-talent:hover{transform:translateY(-2px);}
+  .btn-talent:focus-visible{outline:3px solid var(--forest);outline-offset:4px;}
+  @media (max-width:900px){ .talent-band .wrap{grid-template-columns:1fr;gap:24px;} .talent-act{justify-content:flex-start;} }
 </style>
 </head>
 <body>
@@ -623,7 +638,7 @@
 <div class="reg-strip" role="note" aria-label="Business registration">
   <div class="wrap">
     <span class="reg-id">RC - 10024514</span>
-    <span class="reg-links"><a href="/verify/" data-track="strip_verify_certificate">Verify a certificate</a><a href="mailto:info@pradengroup.co" data-track="strip_email">info@pradengroup.co</a></span>
+    <span class="reg-links"><a href="/talent/" data-track="strip_talent">Join our talent pool</a><a href="/verify/" data-track="strip_verify_certificate">Verify a certificate</a><a href="mailto:info@pradengroup.co" data-track="strip_email">info@pradengroup.co</a></span>
   </div>
 </div>
 <header class="site-head" id="top">
@@ -835,6 +850,19 @@
     </div>
   </section>
 
+  <section class="talent-band" id="talent-pool" aria-labelledby="talent-pool-title">
+    <div class="wrap">
+      <div class="talent-copy">
+        <span class="kicker">For Nigerian professionals</span>
+        <h2 id="talent-pool-title">Looking for a remote role with a US or UK company?</h2>
+        <p class="lede">Join the Praden Hub talent pool. We assess, coach and pre-interview candidates for customer service, virtual assistant, admin, intake and sales development roles, then put you forward when a real role fits you.</p>
+        <p class="talent-facts">Free to join · No false promises · Your profile is shared only with your consent</p>
+      </div>
+      <div class="talent-act">
+        <a class="btn-talent" href="/talent/" data-track="home_talent_register">Register for our talent pool <small>Free · takes about 5 minutes</small></a>
+      </div>
+    </div>
+  </section>
 
 
   <section class="inside" id="inside">
