@@ -6,9 +6,13 @@
 - Roles: customer service representatives, virtual assistants, administrative assistants, intake specialists (including legal intake), sales development representatives (SDRs).
 - How it works: the company describes the role; Praden Hub shortlists trained candidates, pre-interviews them, and sends only people who fit; the company interviews and hires.
 - Praden Hub does not recommend candidates who do not match the role.
+- Every candidate is assessed on communication, role skill, reliability, tools and remote readiness (internet, computer, power backup, time zone).
 - People trained and referred by Praden Hub work remotely with companies in the US and UK.
 - Contact: info@pradengroup.co
 - Page: https://pradengroup.co/hire/
+
+## For candidates
+- Nigerian professionals can register free for the Praden Hub talent pool at https://pradengroup.co/talent/ (customer service, VA, admin, intake and SDR roles). Registration is not a job offer, and Praden Hub never charges candidates to be considered.
 
 ## Customer experience services
 - Consulting: customer journey mapping, what to fix first, founder advisory on retention and service standards.
